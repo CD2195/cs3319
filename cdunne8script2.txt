@@ -11,47 +11,47 @@ load data local infile 'loaddatafall2018.txt' into table product fields terminat
 select * from product; 
 
 -- Insert additional rows into product table
-insert into product (66, "Elbow pads", 14.25, 120);
-insert into product (85, "Invisibility cloak", 3.50, 1);
+insert into product (productid, description, cost, quantity) values (66, "Elbow pads", 14.25, 120);
+insert into product (productid, description, cost, quantity) values (85, "Invisibility cloak", 3.50, 1);
 
 -- Insert rows into agent
-insert into agent (99, "Hugh", "Grant", "Springfield", 16);
-insert into agent (22, "Courtney", "Cox", "New York", 25);
-insert into agent (66, "Rosie", "ODonnell", "Ottawa", 100);
-insert into agent (33, "David", "Letterman", "Bedrock", 100);
-insert into agent (11, "Regis", "Philbin", "Boston", 33);
-insert into agent (12, "Rosie", "Cox", "Ottawa", 50);
-insert into agent (21, "Conor", "Dunne", "Seaford", 95);
+insert into agent (agentid, fname, lname, city, commission) values (99, "Hugh", "Grant", "Springfield", 16);
+insert into agent (agentid, fname, lname, city, commission) values (22, "Courtney", "Cox", "New York", 25);
+insert into agent (agentid, fname, lname, city, commission) values (66, "Rosie", "ODonnell", "Ottawa", 100);
+insert into agent (agentid, fname, lname, city, commission) values (33, "David", "Letterman", "Bedrock", 100);
+insert into agent (agentid, fname, lname, city, commission) values (11, "Regis", "Philbin", "Boston", 33);
+insert into agent (agentid, fname, lname, city, commission) values (12, "Rosie", "Cox", "Ottawa", 50);
+insert into agent (agentid, fname, lname, city, commission) values (21, "Conor", "Dunne", "Seaford", 95);
 
 -- Insert rows into customer
-insert into customer (21, "Homer", "Simpson", "Springfield", "686-8956");
-insert into customer (31, "Sideshow", "Bob", "Springfield", "686-5555");
-insert into customer (12, "Monty", "Burns", "Springfield", "789-0000");
-insert into customer (15, "Fred", "Flintstone", "Bedrock", "777-2345");
-insert into customer (13, "Super", "Man", "Krypto", "888-1234");
-insert into customer (10, "Barney", "Rubble", "Bedrock", "777-2345");
-insert into customer (14, "Peter", "Griffin", "Providence", "987-4567");
+insert into customer (customerid, fname, lname, city, phonenumber) values (21, "Homer", "Simpson", "Springfield", "686-8956");
+insert into customer (customerid, fname, lname, city, phonenumber) values (31, "Sideshow", "Bob", "Springfield", "686-5555");
+insert into customer (customerid, fname, lname, city, phonenumber) values (12, "Monty", "Burns", "Springfield", "789-0000");
+insert into customer (customerid, fname, lname, city, phonenumber) values (15, "Fred", "Flintstone", "Bedrock", "777-2345");
+insert into customer (customerid, fname, lname, city, phonenumber) values (13, "Super", "Man", "Krypto", "888-1234");
+insert into customer (customerid, fname, lname, city, phonenumber) values (10, "Barney", "Rubble", "Bedrock", "777-2345");
+insert into customer (customerid, fname, lname, city, phonenumber) values (14, "Peter", "Griffin", "Providence", "987-4567");
 
 -- Insert rows into purchasing info
-insert into purchaseinfo (21, 99, 20);
-insert into purchaseinfo (21, 12, 14);
-insert into purchaseinfo (21, 66, 10);
-insert into purchaseinfo (31, 99, 1);
-insert into purchaseinfo (31, 12, 2);
-insert into purchaseinfo (31, 78, 4);
-insert into purchaseinfo (31, 66, 2);
-insert into purchaseinfo (15, 66, 2);
-insert into purchaseinfo (15, 78, 2);
-insert into purchaseinfo (14, 66, 19);
+insert into purchaseinfo (customerid, productid, quantity) values (21, 99, 20);
+insert into purchaseinfo (customerid, productid, quantity) values (21, 12, 14);
+insert into purchaseinfo (customerid, productid, quantity) values (21, 66, 10);
+insert into purchaseinfo (customerid, productid, quantity) values (31, 99, 1);
+insert into purchaseinfo (customerid, productid, quantity) values (31, 12, 2);
+insert into purchaseinfo (customerid, productid, quantity) values (31, 78, 4);
+insert into purchaseinfo (customerid, productid, quantity) values (31, 66, 2);
+insert into purchaseinfo (customerid, productid, quantity) values (15, 66, 2);
+insert into purchaseinfo (customerid, productid, quantity) values (15, 78, 2);
+insert into purchaseinfo (customerid, productid, quantity) values (14, 66, 19);
 
 -- Insert rows into agent customer info
-insert into agentcustomerinfo (99, 21);
-insert into agentcustomerinfo (99, 12);
-insert into agentcustomerinfo (99, 14);
-insert into agentcustomerinfo (33, 13);
-insert into agentcustomerinfo (11, 10);
-insert into agentcustomerinfo (11, 15);
-insert into agentcustomerinfo (66, 31);
+insert into agentcustomerinfo (agentid, customerid) values (99, 21);
+insert into agentcustomerinfo (agentid, customerid) values (99, 12);
+insert into agentcustomerinfo (agentid, customerid) values (99, 14);
+insert into agentcustomerinfo (agentid, customerid) values (33, 13);
+insert into agentcustomerinfo (agentid, customerid) values (11, 10);
+insert into agentcustomerinfo (agentid, customerid) values (11, 15);
+insert into agentcustomerinfo (agentid, customerid) values (66, 31);
 
 -- Show data for all tables
 select * from product;
