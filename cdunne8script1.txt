@@ -1,0 +1,40 @@
+-- CS3319A Assignment #2
+-- Author: Conor J. Dunne
+-- Date: 2018-11-02
+-- Script 1: creates database, configures access, and create tables
+
+-- Show all databases, and drop cdunne8assign2db if it already exists
+show databases;
+drop database if exists cdunne8assign2db;
+
+-- Create database and use
+create database cdunne8assign2db;
+use cdunne8assign2db;
+
+-- Grant access to TA for marking
+grant usage on *.* to 'ta'@'localhost';
+drop user 'ta'@'localhost';
+create user 'ta'@'localhost' identified  by 'cs3319';
+grant all privileges on cdunne8assign2db.* to 'ta'@'localhost';
+flush privileges;
+
+-- Show all tables, and create new ones
+show tables;
+
+-- Product table
+create table product (productid char(2) not null, description varchar(20), cost float(5,2), quantity int, primary key(productid));
+
+-- Agent Table
+create table agent (agentid char(2) not null, fname varchar(30), lname varchar(30), city varchar(15), commission int, primary key (agentid));
+
+-- Customer Table
+create table customer (customerid char(2) not null, fname varchar(30), lname varchar(30), city varchar(15), phonenumber varchar(8), primary key (customerid)); 
+
+-- Purchasing Table
+create table purchaseinfo (customerid char(2) not null, productid char(2) not null, quantity int, foreign key (customerid) references customer(customerid), foreign key (productid) references product(productid), primary key (customerid, productid));
+
+-- Customer Agent Info Table. Restricts removal of agents if they exist in this table. 
+create table agentcustomerinfo (agentid char(2) not null, customerid char(2) not null, foreign key (agentid) references agent(agentid) on delete restrict, foreign key (customerid) references customer(customerid), primary key (agentid, customerid));
+
+-- Show all tables
+show tables;
