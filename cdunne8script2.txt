@@ -60,7 +60,18 @@ select * from customer;
 select * from purchaseinfo;
 select * from agentcustomerinfo;
 
--- Update data for Superman and Sideshow
+-- Update data for Superman, Sideshow and customers under Regis
+update customer set fname="Wonder", lname="Woman" where fname="Super" and lname="Man";
+update purchaseinfo p inner join customer c on p.customerid=c.customerid set p.quantity=5 where c.fname="Sideshow";
+update customer c inner join agentcustomerinfo ac on c.customerid=ac.customerid inner join agent a on ac.agentid=a.agentid set c.city="Boston" where a.fname="Regis";
+
+-- Show new data for all tables
+select * from product;
+select * from agent;
+select * from customer;
+select * from purchaseinfo;
+select * from agentcustomerinfo;
+
 
 
 
