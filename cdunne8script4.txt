@@ -1,0 +1,32 @@
+-- CS3319A Assignment 2
+-- Author: Conor J. Dunne
+-- Date: 2018-11-02
+-- Script 2: populate database with information
+
+-- Select database to work on
+use cdunne8assign2db; 
+
+-- Show all tables
+select * from product; 
+select * from agent;
+select * from customer; 
+select * from purchaseinfo;
+select * from agentcustomerinfo; 
+
+-- Create view and show it worls
+select c.fname, c.lname, p.description, pi.quantity, p.cost as "CostPerUnit", sum(p.cost*pi.quantity) as "TotalCost" from customer c inner join purchaseinfo pi using (customerid) inner join product p using (productid) group by p.description, c.lname order by (c.lname);
+select * from customerpurchaseinfo; 
+
+-- Select rows where total cost > $100
+select * from customerpurchaseinfo where `Total Cost` > 100;
+
+-- Delete Invsibility Cloak
+select * from product; 
+delete from product where description="Invisibility Cloak";
+select * from product; 
+
+-- Delete agents from Springfield
+select * from agent; 
+delete from agent where city="Springfield";
+
+-- The row containing city "Springfield" (Hugh Grant) could not be deleted because it was referenced by rows in the agentcustomerinfo table. A constraint was added on the foreign key in that table to prevent the deletion of agents that already deal with customers (aka will have records in the agentcustomerinfo table). 
