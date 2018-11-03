@@ -1,0 +1,53 @@
+-- CS3319A Assignment 2
+-- Author: Conor J. Dunne
+-- Date: 2018-11-02
+-- Script 2: populate database with information
+
+-- Select database to work on
+use cdunne8assign2db; 
+
+-- Query 1
+select description from product;
+
+-- Query 2
+select distinct(city) from customer;
+
+-- Query 3
+select * from agent order by(city);
+
+-- Query 4
+select fname, lname from customer where city="Springfield";
+
+-- Query 5
+select c.lname from customer c inner join agentcustomerinfo ac on c.customerid=ac.customerid inner join agent a on ac.agentid=a.agentid where a.fname="Regis"; 
+
+-- Query 6
+select description from product where description like "%pad%" or description like "%Pad%";
+
+-- Query 7
+select c.lname, p.description, pi.quantity from purchaseinfo pi inner join product p on pi.productid=p.productid inner join customer c on pi.customerid=c.customerid order by (c.lname);
+
+-- Query 8
+select sum(pi.quantity) as "Homer's Total Purchases" from purchaseinfo pi inner join customer c on pi.customerid=c.customerid where c.fname="Homer";
+
+-- Query 9
+select c.fname, c.lname, sum(pi.quantity) as "Total Purchases" from purchaseinfo pi inner join customer c on pi.customerid=c.customerid group by (c.fname);
+
+-- Query 10 
+select p.description, p.quantity from product p left join purchaseinfo pi on p.productid=pi.productid where pi.productid is NULL;
+
+-- Query 11
+select distinct p.description, p.quantity from product p left join purchaseinfo pi using (productid) left join customer c using (customerid) where c.fname !="Fred" and c.lname!="Flintstone" or pi.productid is NULL;
+
+-- Query 12
+select a.fname, a.lname, c.fname, c.lname from agent a inner join agentcustomerinfo ac using (agentid) inner join customer c using (customerid) where a.city=c.city;
+
+-- Query 13
+select sum(pi.quantity) as "Number of Knee Pads Purchased" from purchaseinfo pi inner join product p using (productid) where p.description="Knee Pads";
+
+-- Query 14 
+select p.description from product p inner join purchaseinfo pi using (productid) group by p.description having count(*)>3;
+
+-- Query 15
+select a.fname, a.lname from agent a inner join agentcustomerinfo using (agentid) inner join purchaseinfo using (customerid) inner join product p using (productid) where p.description="Knee Pads";
+
