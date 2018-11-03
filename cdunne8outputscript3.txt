@@ -1,0 +1,133 @@
+--------------
+select description from product
+--------------
+
+description
+Bike
+Socks
+Elbow pads
+Knee Pads
+Invisibility cloak
+Roller Blades
+Helmet
+--------------
+select distinct(city) from customer
+--------------
+
+city
+Boston
+Springfield
+Krypto
+Providence
+--------------
+select * from agent order by(city)
+--------------
+
+agentid	fname	lname	city	commission
+33	David	Letterman	Bedrock	100
+11	Regis	Philbin	Boston	33
+22	Courtney	Cox	New York	25
+12	Rosie	Cox	Ottawa	50
+66	Rosie	ODonnell	Ottawa	100
+21	Conor	Dunne	Seaford	95
+99	Hugh	Grant	Springfield	16
+--------------
+select fname, lname from customer where city="Springfield"
+--------------
+
+fname	lname
+Monty	Burns
+Homer	Simpson
+Sideshow	Bob
+--------------
+select c.lname from customer c inner join agentcustomerinfo ac on c.customerid=ac.customerid inner join agent a on ac.agentid=a.agentid where a.fname="Regis"
+--------------
+
+lname
+Rubble
+Flintstone
+--------------
+select description from product where description like "%pad%" or description like "%Pad%"
+--------------
+
+description
+Elbow pads
+Knee Pads
+--------------
+select c.lname, p.description, pi.quantity from purchaseinfo pi inner join product p on pi.productid=p.productid inner join customer c on pi.customerid=c.customerid order by (c.lname)
+--------------
+
+lname	description	quantity
+Bob	Knee Pads	5
+Bob	Socks	5
+Bob	Elbow pads	5
+Bob	Helmet	5
+Flintstone	Knee Pads	2
+Flintstone	Elbow pads	2
+Griffin	Elbow pads	19
+Simpson	Socks	14
+Simpson	Elbow pads	10
+Simpson	Helmet	20
+--------------
+select sum(pi.quantity) as "Homer's Total Purchases" from purchaseinfo pi inner join customer c on pi.customerid=c.customerid where c.fname="Homer"
+--------------
+
+Homer's Total Purchases
+44
+--------------
+select c.fname, c.lname, sum(pi.quantity) as "Total Purchases" from purchaseinfo pi inner join customer c on pi.customerid=c.customerid group by (c.fname)
+--------------
+
+fname	lname	Total Purchases
+Fred	Flintstone	4
+Homer	Simpson	44
+Peter	Griffin	19
+Sideshow	Bob	20
+--------------
+select p.description, p.quantity from product p left join purchaseinfo pi on p.productid=pi.productid where pi.productid is NULL
+--------------
+
+description	quantity
+Bike	200
+Invisibility cloak	1
+Roller Blades	89
+--------------
+select distinct p.description, p.quantity from product p left join purchaseinfo pi using (productid) left join customer c using (customerid) where c.fname !="Fred" and c.lname!="Flintstone" or pi.productid is NULL
+--------------
+
+description	quantity
+Bike	200
+Socks	100
+Elbow pads	120
+Knee Pads	70
+Invisibility cloak	1
+Roller Blades	89
+Helmet	30
+--------------
+select a.fname, a.lname, c.fname, c.lname from agent a inner join agentcustomerinfo ac using (agentid) inner join customer c using (customerid) where a.city=c.city
+--------------
+
+fname	lname	fname	lname
+Regis	Philbin	Barney	Rubble
+Regis	Philbin	Fred	Flintstone
+Hugh	Grant	Monty	Burns
+Hugh	Grant	Homer	Simpson
+--------------
+select sum(pi.quantity) as "Number of Knee Pads Purchased" from purchaseinfo pi inner join product p using (productid) where p.description="Knee Pads"
+--------------
+
+Number of Knee Pads Purchased
+7
+--------------
+select p.description from product p inner join purchaseinfo pi using (productid) group by p.description having count(*)>3
+--------------
+
+description
+Elbow pads
+--------------
+select a.fname, a.lname from agent a inner join agentcustomerinfo using (agentid) inner join purchaseinfo using (customerid) inner join product p using (productid) where p.description="Knee Pads"
+--------------
+
+fname	lname
+Regis	Philbin
+Rosie	ODonnell

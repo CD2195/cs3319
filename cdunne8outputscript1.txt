@@ -1,0 +1,72 @@
+--------------
+show databases
+--------------
+
+Database
+information_schema
+cdunne8assign2db
+mysql
+nhlDB
+performance_schema
+--------------
+drop database if exists cdunne8assign2db
+--------------
+
+--------------
+create database cdunne8assign2db
+--------------
+
+--------------
+grant usage on *.* to 'ta'@'localhost'
+--------------
+
+--------------
+drop user 'ta'@'localhost'
+--------------
+
+--------------
+create user 'ta'@'localhost' identified  by 'cs3319'
+--------------
+
+--------------
+grant all privileges on cdunne8assign2db.* to 'ta'@'localhost'
+--------------
+
+--------------
+flush privileges
+--------------
+
+--------------
+show tables
+--------------
+
+--------------
+create table product (productid char(2) not null, description varchar(20), cost float(5,2), quantity int, primary key(productid))
+--------------
+
+--------------
+create table agent (agentid char(2) not null, fname varchar(30), lname varchar(30), city varchar(15), commission int, primary key (agentid))
+--------------
+
+--------------
+create table customer (customerid char(2) not null, fname varchar(30), lname varchar(30), city varchar(15), phonenumber varchar(8), primary key (customerid))
+--------------
+
+--------------
+create table purchaseinfo (customerid char(2) not null, productid char(2) not null, quantity int, foreign key (customerid) references customer(customerid), foreign key (productid) references product(productid), primary key (customerid, productid))
+--------------
+
+--------------
+create table agentcustomerinfo (agentid char(2) not null, customerid char(2) not null, foreign key (agentid) references agent(agentid) on delete restrict, foreign key (customerid) references customer(customerid), primary key (agentid, customerid))
+--------------
+
+--------------
+show tables
+--------------
+
+Tables_in_cdunne8assign2db
+agent
+agentcustomerinfo
+customer
+product
+purchaseinfo

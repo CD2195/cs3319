@@ -1,0 +1,284 @@
+--------------
+load data local infile 'loaddatafall2018.txt' into table product fields terminated by ','
+--------------
+
+--------------
+select * from product
+--------------
+
+productid	description	cost	quantity
+11	Bike	150.00	200
+12	Socks	2.00	100
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+insert into product (productid, description, cost, quantity) values (66, "Elbow pads", 14.25, 120)
+--------------
+
+--------------
+insert into product (productid, description, cost, quantity) values (85, "Invisibility cloak", 3.50, 1)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (99, "Hugh", "Grant", "Springfield", 16)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (22, "Courtney", "Cox", "New York", 25)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (66, "Rosie", "ODonnell", "Ottawa", 100)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (33, "David", "Letterman", "Bedrock", 100)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (11, "Regis", "Philbin", "Boston", 33)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (12, "Rosie", "Cox", "Ottawa", 50)
+--------------
+
+--------------
+insert into agent (agentid, fname, lname, city, commission) values (21, "Conor", "Dunne", "Seaford", 95)
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (21, "Homer", "Simpson", "Springfield", "686-8956")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (31, "Sideshow", "Bob", "Springfield", "686-5555")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (12, "Monty", "Burns", "Springfield", "789-0000")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (15, "Fred", "Flintstone", "Bedrock", "777-2345")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (13, "Super", "Man", "Krypto", "888-1234")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (10, "Barney", "Rubble", "Bedrock", "777-2345")
+--------------
+
+--------------
+insert into customer (customerid, fname, lname, city, phonenumber) values (14, "Peter", "Griffin", "Providence", "987-4567")
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (21, 99, 20)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (21, 12, 14)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (21, 66, 10)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (31, 99, 1)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (31, 12, 2)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (31, 78, 4)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (31, 66, 2)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (15, 66, 2)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (15, 78, 2)
+--------------
+
+--------------
+insert into purchaseinfo (customerid, productid, quantity) values (14, 66, 19)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (99, 21)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (99, 12)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (99, 14)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (33, 13)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (11, 10)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (11, 15)
+--------------
+
+--------------
+insert into agentcustomerinfo (agentid, customerid) values (66, 31)
+--------------
+
+--------------
+select * from product
+--------------
+
+productid	description	cost	quantity
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+85	Invisibility cloak	3.50	1
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+select * from agent
+--------------
+
+agentid	fname	lname	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+21	Conor	Dunne	Seaford	95
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+select * from customer
+--------------
+
+customerid	fname	lname	city	phonenumber
+10	Barney	Rubble	Bedrock	777-2345
+12	Monty	Burns	Springfield	789-0000
+13	Super	Man	Krypto	888-1234
+14	Peter	Griffin	Providence	987-4567
+15	Fred	Flintstone	Bedrock	777-2345
+21	Homer	Simpson	Springfield	686-8956
+31	Sideshow	Bob	Springfield	686-5555
+--------------
+select * from purchaseinfo
+--------------
+
+customerid	productid	quantity
+14	66	19
+15	66	2
+15	78	2
+21	12	14
+21	66	10
+21	99	20
+31	12	2
+31	66	2
+31	78	4
+31	99	1
+--------------
+select * from agentcustomerinfo
+--------------
+
+agentid	customerid
+11	10
+99	12
+33	13
+99	14
+11	15
+99	21
+66	31
+--------------
+update customer set fname="Wonder", lname="Woman" where fname="Super" and lname="Man"
+--------------
+
+--------------
+update purchaseinfo p inner join customer c on p.customerid=c.customerid set p.quantity=5 where c.fname="Sideshow"
+--------------
+
+--------------
+update customer c inner join agentcustomerinfo ac on c.customerid=ac.customerid inner join agent a on ac.agentid=a.agentid set c.city="Boston" where a.fname="Regis"
+--------------
+
+--------------
+select * from product
+--------------
+
+productid	description	cost	quantity
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+85	Invisibility cloak	3.50	1
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+select * from agent
+--------------
+
+agentid	fname	lname	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+21	Conor	Dunne	Seaford	95
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+select * from customer
+--------------
+
+customerid	fname	lname	city	phonenumber
+10	Barney	Rubble	Boston	777-2345
+12	Monty	Burns	Springfield	789-0000
+13	Wonder	Woman	Krypto	888-1234
+14	Peter	Griffin	Providence	987-4567
+15	Fred	Flintstone	Boston	777-2345
+21	Homer	Simpson	Springfield	686-8956
+31	Sideshow	Bob	Springfield	686-5555
+--------------
+select * from purchaseinfo
+--------------
+
+customerid	productid	quantity
+14	66	19
+15	66	2
+15	78	2
+21	12	14
+21	66	10
+21	99	20
+31	12	5
+31	66	5
+31	78	5
+31	99	5
+--------------
+select * from agentcustomerinfo
+--------------
+
+agentid	customerid
+11	10
+99	12
+33	13
+99	14
+11	15
+99	21
+66	31

@@ -14,11 +14,11 @@ select * from purchaseinfo;
 select * from agentcustomerinfo; 
 
 -- Create view and show it worls
-select c.fname, c.lname, p.description, pi.quantity, p.cost as "CostPerUnit", sum(p.cost*pi.quantity) as "TotalCost" from customer c inner join purchaseinfo pi using (customerid) inner join product p using (productid) group by p.description, c.lname order by (c.lname);
+create view customerpurchaseinfo as select c.fname, c.lname, p.description, pi.quantity, p.cost as "CostPerUnit", sum(p.cost*pi.quantity) as "TotalCost" from customer c inner join purchaseinfo pi using (customerid) inner join product p using (productid) group by p.description, c.lname order by (c.lname);
 select * from customerpurchaseinfo; 
 
 -- Select rows where total cost > $100
-select * from customerpurchaseinfo where `Total Cost` > 100;
+select * from customerpurchaseinfo where TotalCost > 100;
 
 -- Delete Invsibility Cloak
 select * from product; 
